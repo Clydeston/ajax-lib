@@ -1,0 +1,36 @@
+<head>
+    <title> Ajax</title>
+    
+</head>
+
+<a id="test-btn" style="display:block;height: 50px;width: 150px;background-color: #000;color:#fff;text-align: center;line-height: 50px;cursor: pointer;">Button</a>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script src="ajax.js"></script>
+<script> 
+
+$(function (){
+    alert("hello world!");
+});
+
+$("#test-btn").click(function() {
+    var data = new FormData();
+    data.append("username", "test");
+    data.append("password", "test1@!");
+    data.append("email", "test3@gmail.com");
+
+    var data_json = JSON.stringify({
+        username: 'test',
+        email: "test3@gmail.com",
+        password: "test1@!"
+    })
+
+    post("http://localhost:8080/test", data_json).then(function(response) {
+        alert("success!");
+        console.log(response);
+    }).catch(function(err) {
+        alert(JSON.stringify(err));
+        console.log(err)
+    });    
+});
+</script>
